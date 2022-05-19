@@ -1,0 +1,25 @@
+cc_library(
+    name = "environment",
+    deps = [
+        "@com_github_google_glog//:glog",
+        "@com_github_google_googletest//:gtest",
+    ],
+    srcs = [
+        "environment.cc"
+    ],
+    hdrs = [
+        "environment.h"
+    ],
+)
+
+cc_test(
+    name = "stack-trace-failure",
+    deps = [
+        "@com_github_google_glog//:glog",
+        "@com_github_google_googletest//:gtest_main",
+        ":environment",
+    ],
+    srcs = [
+        "stack-trace-failure.cc",
+    ],
+)
