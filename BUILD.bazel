@@ -4,12 +4,12 @@ cc_library(
         "@com_github_google_glog//:glog",
         "@com_github_google_googletest//:gtest",
     ],
-    srcs = [
-        "environment.cc"
-    ],
     hdrs = [
         "environment.h"
     ],
+    # srcs = [
+    #     "environment.cc"
+    # ],
 )
 
 cc_test(
@@ -20,6 +20,18 @@ cc_test(
         ":environment",
     ],
     srcs = [
-        "stack-trace-failure.cc",
+        "stack-trace-failure1.cc",
+        "stack-trace-failure2.cc",
+        "environment.cc",
+    ],
+)
+
+cc_binary(
+    name = "main",
+    deps = [
+        "@com_github_google_glog//:glog"
+    ],
+    srcs = [
+        "main.cc"
     ],
 )

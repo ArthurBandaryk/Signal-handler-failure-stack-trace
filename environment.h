@@ -7,6 +7,7 @@ class SignalHandlerEnvironment : public ::testing::Environment {
 
   // Override this to define how to set up the environment.
   void SetUp() override {
+    std::cout << "env!!!!" << std::endl;
     google::InstallFailureSignalHandler();
   }
 

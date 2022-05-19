@@ -10,13 +10,14 @@ on:
 jobs:
   build-and-test:
     name: Build and Test
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ["macos-latest", "ubuntu-latest", "windows-latest"]
-    defaults:
-      run:
-        shell: bash
+    #runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
+    # strategy:
+    #   matrix:
+    #     os: ["macos-latest", "ubuntu-latest", "windows-latest"]
+    # defaults:
+    #   run:
+    #     shell: bash
 
     steps:
       # Checkout the repository under $GITHUB_WORKSPACE.
@@ -24,20 +25,16 @@ jobs:
         with:
           submodules: 'recursive'
 
+      # - name: Build main
+      #   run: bazel build :main
+
+      # - name: Run main
+      #   run: bazel run :main      
+
       - name: Build
         run: |
-          bazel build \
-            --spawn_strategy=local \
-            -c dbg \
-            --strip="never" \
-            ...
+          bazel build --spawn_strategy=local -c dbg --strip="never" ...
 
       - name: Test
         run: |
-          bazel test \
-            --spawn_strategy=local \
-            -c dbg \
-            --strip="never" \
-            --test_output=errors \
-            ... \
-            --test_arg=--gtest_shuffle
+          bazel test --spawn_strategy=local -c dbg --strip="never" --test_output=errors ...
