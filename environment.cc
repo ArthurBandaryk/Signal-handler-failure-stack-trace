@@ -1,4 +1,4 @@
 #include "environment.h"
 
-static testing::Environment* const foo_env =
+static testing::Environment* const sig_env =
     testing::AddGlobalTestEnvironment(new SignalHandlerEnvironment{});
